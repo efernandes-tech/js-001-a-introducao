@@ -16,6 +16,7 @@ botaoAdicionar.addEventListener("click", function(event) {
 
     if (erros.length > 0) {
         exibeMensagensDeErro(erros);
+
         return;
     }
 
@@ -24,6 +25,10 @@ botaoAdicionar.addEventListener("click", function(event) {
     tabela.appendChild(pacienteTr);
 
     form.reset();
+
+    var mensagensErro = document.querySelector("#mensagens-erro");
+    mensagensErro.innerHTML = "";
+
 });
 
 function obtemPacienteDoFormulario(form) {
