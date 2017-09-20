@@ -11,13 +11,21 @@ botaoAdicionar.addEventListener("click", function() {
 
     // Fica escutando para pegar a resposta da requisicao.
     xhr.addEventListener("load", function() {
-        var resposta = xhr.responseText;
-        // Transforma a string json em obj javascript.
-        var pacientes = JSON.parse(resposta);
+        var erroAjax = document.querySelector("#erro-ajax");
+        // Se status da requisicao ok, senao deu erro.
+        if (xhr.status == 200) {
+            console.log("ok");
+            erroAjax.classList.add("invisivel");
+            var resposta = xhr.responseText;
+            // Transforma a string json em obj javascript.
+            var pacientes = JSON.parse(resposta);
 
-        pacientes.forEach(function(paciente) {
-            adicionaPacienteNaTabela(paciente);
-        });
+            pacientes.forEach(function(paciente) {
+                adicionaPacienteNaTabela(paciente);
+            });
+        } else {
+            erroAjax.classList.remove("invisivel");
+        }
     });
 
     // Envia a requisicao.
